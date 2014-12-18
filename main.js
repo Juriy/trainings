@@ -3,6 +3,7 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var errorHandler = require('errorHandler');
+var api = require('./api');
 
 var app = express();
 
@@ -25,5 +26,7 @@ app.post('/login', function(req, res, next) {
 app.get('/session', function(req, res) {
 	res.json(req.session);
 });
+
+app.use('/api', api);
 
 app.listen(3000);
