@@ -1,11 +1,10 @@
+var http = require('http');
+
 var express = require('express');
 var BookStore = require('./MongoBookStore');
 var router = express.Router();
 
 var bookStore = new BookStore();
-// bookStore.add('Pride And Prejudice', function(err, result) {
-// 	console.log('Book Added');
-// });
 
 router.route('/books')
 	.get(function(req, res) {

@@ -1,11 +1,18 @@
+var http = require('http');
 var express = require('express');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var errorHandler = require('errorHandler');
+var socketio = require('socket.io');
+
 var api = require('./api');
 
 var app = express();
+
+var server = http.createServer(app);
+
+var io = socketio(server);
 
 var sessionMiddleware = session({
 	secret: 'keyboardcat',
@@ -29,4 +36,16 @@ app.get('/session', function(req, res) {
 
 app.use('/api', api);
 
-app.listen(3000);
+io.on('connection', function(socket) {
+
+	socket.on('message', function(text) {
+		console.log(text);
+		io.emit('message', text);
+	});
+
+	console.log('A new client connected');
+	socket.emit('message', 'Hello there!');
+});
+
+
+server.listen(3000);

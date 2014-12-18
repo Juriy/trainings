@@ -21,7 +21,12 @@
 
     <script src="vnd/jquery/dist/jquery.min.js"></script>
     <script src="vnd/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <script>
+        var socket = io();
+
+        socket.on('message', receive);
+
         $('form').submit(function(e) {
             var value = $('#say').val();
             $('#say').val('');
@@ -30,7 +35,7 @@
         })
 
         function send(message) {
-            receive(message);
+            socket.emit('message', message);
         }
 
         function receive(message) {
