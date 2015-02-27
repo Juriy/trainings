@@ -1,31 +1,11 @@
 
-var cup = {
-	material: "metal",
-	isHot: false,
-	color: 0xCCC
-};
+process.stdin.setEncoding('utf-8');
+process.stdin.resume();
 
-cup.contents = 'coffee';
+process.stdin.on('data', onUserInput);
 
-function printCup(cupToPrint) {
-	console.log("This is a cup of",
-		cupToPrint.contents);
-	console.log("This cup is", 
-		getHotAdjective(cupToPrint));
-	console.log("This cup is made of", 
-		cupToPrint.material);
-	
-	if (cupToPrint.material == "glass") {
-		console.log("This cup is fragile");
-	}
+console.log("Hello, please enter a name!");
+
+function onUserInput(input) {
+	console.log("Hello,",input);
 }
-
-function getHotAdjective(cupToPrint) {
-	if (cupToPrint.isHot) {
-		return "hot";
-	} else {
-		return "warm";
-	}
-}
-
-printCup(cup);
