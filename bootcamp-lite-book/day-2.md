@@ -124,12 +124,74 @@ if (isWarm || gotWetsuite && isCalm) {
 	console.log("Not a good time for swimming");
 }
 ```
-Looks good? Well, not quite. It is completely unobvious how JavaScript will 
-evaluate the expression
+Looks good? Well, let's do some testing. Try to plug some values in and see the
+results. If you play long enough with the code, you might notice the strange thing:
 
-2. Loops
---------
+```
+var waterTemp = 30;
+var gotWetsuite = true;
+var waveHeight = 5; 	// That's a heavy storm!!!
+```
 
+That code prints that we should do some swimming in 5-meter-high waves! Not good.
+
+Why did that happen?! Let's focus on the expression in `if`:
+
+```
+isWarm || gotWetsuite && isCalm
+```
+
+What this expression _really_ says is "If it is warm, I'll swim no matter what". 
+JavaScript will first execute the "and" part and only afterwards, the OR part.
+This happens because `logical and` has higher precedence than `logical or`, 
+so the right part executes first. 
+
+Just like in arithmetic expression `1 + 2*10`, multiplication is executed before
+the addition. To fix the problem, we mush add curly braces that would enforce 
+JavaScript to execute `||` before `&&`:
+
+```
+if ((isWarm || gotWetsuite) && isCalm) {
+	/* ... code omited */
+}
+```
+Now the code will work just fine.
+
+As a rule of thumb, when you are dealing with complex logical expressions,
+do not rely on execution order of `AND`s and `OR`s, always add explicit
+parentheses even if your expression is correct without them. The reason
+to be more explicit is to keep code readable and easier to change. 
+
+There's one more logical operator that work with booleans: `logical not`.
+It is represented as exclamation mark `!` in the code. Just as name suggests,
+logical `not` 'switches' the argument from `true` to `false` and vice-versa.
+
+```
+var a = true;
+var b = !a;   	// b is now false
+a = !b;			// a is now true
+```
+
+You can also use it in logical expressions:
+
+```
+var isStorm = waveHeight > 1;
+
+if ((isWarm || gotWetsuite) && !isStorm) {
+	/* ... code omited */
+}
+```
+
+
+2. Strings
+----------
+String in JavaScript is a basic type to work with text information. We already worked
+with strings to print greetings and info messages, now we'll take a deeper look into 
+the ways you can get more from strings.
+
+Plan: 
+	* Creating strings
+	* Special 
 
 
 [1]: http://nodejs.org/
