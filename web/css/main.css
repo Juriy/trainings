@@ -1,0 +1,28 @@
+#mainHeader {
+	color: darkgoldenrod;
+}
+
+#secondaryHeader {
+	color: lightblue;
+}
+
+.primary {
+	/*background-color: red;*/
+}
+
+.big {
+	font-size: 28px;
+	font-family: "courier"
+}
+
+p {
+	font-family: "sans-serif"
+}
+
+.secondary {
+	/* background-color: green; */
+}
+
+body {
+	background-color: #FFF;
+}
