@@ -11,6 +11,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="vnd/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
   </head>
 
   <body>
@@ -60,20 +61,25 @@
         <h1>Book Store</h1>
         <p>Welcome to book store</p>
         
-        <div class="media">
-          <div class="media-left">
-            <a href="#">
-              <img class="media-object" src="img/cover.jpg" alt="cover" width="150px">
-            </a>
-          </div>
-          <div class="media-body">
-            <h4 class="media-heading" id="bookHeader">Terry Pratchet: A slip of the Keyboard </h4>
-            Book description
-          </div>
-        </div>
+        <ul class="book-catalog">
+        </ul>
       </div>
 
     </div> <!-- /container -->
+
+    <div id="book-template" style="display: none;">
+      <div class="media">
+          <div class="media-left">
+            <a href="#">
+              <img class="media-object" src="{{IMAGE}}" alt="cover" width="150px">
+            </a>
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading book-header">{{BOOK_NAME}}</h4>
+            {{DESCRIPTION}}
+          </div>
+        </div>
+    </div>
 
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>
