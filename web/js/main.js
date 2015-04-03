@@ -1,7 +1,5 @@
 var parent = document.querySelector('.book-catalog');
 
-books.forEach(addBook);
-
 function addBook(book) {
 	var el = document.createElement('li');
 	var template = getBookTemplate();
@@ -20,6 +18,46 @@ function getBookTemplate() {
 	return templateElement.innerHTML;
 }
 
+function init() {
+	books.forEach(addBook);
+	
 
-// el.innerHTML = books[0].title;
+	var button = document.getElementById('login-button');
+	button.addEventListener('click', function(e) {
+		e.preventDefault();
 
+		var login = document.getElementById('login').value;
+		var pass = document.getElementById('pass').value;
+		console.log(login, pass);
+	});
+
+	getAllBooks();
+}
+
+function doUselessStuff() {
+	var sum = 0;
+	for (var i = 0; i < 100000000; i++) {
+		sum += Math.random()*Math.random()
+				*Math.random()*Math.random();
+	}
+	console.log(sum);
+}
+
+function getAllBooks() {
+	var xhr = new XMLHttpRequest();
+
+	xhr.onreadystatechange = function(e) {
+		if (xhr.readyState == 4) {
+			var response = JSON.parse(xhr.responseText);
+			console.log(response.length);
+
+		}
+	};
+
+	xhr.open("GET", "data/data");
+	//xhr.send("HELLO WORLD");
+}
+
+
+
+init();

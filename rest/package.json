@@ -1,0 +1,20 @@
+{
+  "name": "jscamp-rest-server",
+  "version": "1.0.0",
+  "description": "A sample REST server for JavaScript BootCamp",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "REST",
+    "Node.js",
+    "Express"
+  ],
+  "author": "Juriy Bura <juriy.bura@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.5.3",
+    "express": "^4.12.3"
+  }
+}

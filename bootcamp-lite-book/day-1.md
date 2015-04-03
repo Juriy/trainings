@@ -4,9 +4,12 @@ JavaScript BootCamp Lite. Day 1.
 
 1. Environment setup
 --------------------
-To set up environment download node.js form [http://nodejs.org/][1] and Sublime Text 3 from [http://sublimetext.com/3][2]
+First component of our environment setup is NodeJS [http://nodejs.org/][1]. 
+Download the installer from the website (the huge green button right in the
+middle of a webpage does that).
 
-Install node.js. Leave all installer defaults except for the installation path. It is better **not** to install node.js in `Program Files` in windows, as this folder has special security restrictions. Moreover it has a space in the name which makes typing it in console and configs more problematic. To save yourself from trouble create a foler `c:\apps` and install node.js under `c:\apps\nodejs`.
+
+Install node.js. Leave all installer defaults except for the installation path. It is better **not** to install node.js in `Program Files` in Windows, as this folder has special security restrictions. Moreover it has a space in the name which makes typing it in console and configs more problematic. To save yourself from trouble create a foler `c:\apps` and install node.js under `c:\apps\nodejs`.
 
 To check if node.js installed correctly type 
 
@@ -14,9 +17,20 @@ To check if node.js installed correctly type
 > node --version
 ```
 
-If everything's OK you should see the version number printed on the screen. If you see an error message instead, you might need to add the installation folder of Node to your PATH environment variable.
+If everything's OK you should see the version number printed on the screen. If you see an error message instead, you might need to add the installation folder of Node to your PATH environment variable. If everything's working for you, feel free to skip the next section. Otherwise read on the troubleshooting guide.
 
-// TODO: Add 'HOW TO FIX IT'
+*** 1.1. Troubleshooting Node.js installation ***
+If you see a message like `node is not recognized as internal or external command` (Windows) or `command not found` (MacOS) that probably means that `PATH` variable was not successfully updated during the installation, so you'll have to do it manually.
+
+To set `PATH` under Windows:
+
+1. Right click `My Computer` then select `Properties` from the context menu
+2. In the window that opens click `Advanced System Settings`
+3. In the next window click `Environment Variables`. You'll see the window with the list of environment variables.
+5. Find a variable called `PATH` in the list of user variables, or create one if it is not there. 
+6. If there was a value already, put the semicolon (;) after it and insert the full path to the folder where you installed node. If the value was empty or you creating a new variable, then simply put the path to node.js folder there.
+
+// TODO: setting PATH to node in Linux
 
 
 2. Hello World
