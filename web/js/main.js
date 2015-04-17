@@ -46,13 +46,18 @@ function doUselessStuff() {
 function getAllBooks() {
 	var xhr = new XMLHttpRequest();
 
-	xhr.onreadystatechange = function(e) {
+/*	xhr.onreadystatechange = function(e) {
 		if (xhr.readyState == 4) {
 			var response = JSON.parse(xhr.responseText);
 			console.log(response.length);
 
 		}
 	};
+*/
+
+	var text = xhr.addEventListener("load", function(e) {
+
+	});
 
 	xhr.open("GET", "data/data");
 	//xhr.send("HELLO WORLD");
