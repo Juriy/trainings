@@ -16,6 +16,10 @@
 
     <div ng-controller="helloController">
       {{message}}
+
+      {{greeting}}
+      <br />
+      <input ng-model="message" />
     </div>
 
     <script src="vnd/angular/angular.js"></script>
@@ -24,8 +28,13 @@
       var app = angular.module('bookstore', []);
 
       app.controller('helloController', function($scope) {
-        $scope.message = 'Hello World';
+        $scope.message = 'Jacky';
+
+        $scope.$watch('message', function(newValue, oldValue) {
+           $scope.greeting = 'Hello ' + newValue;
+        });
       });
+
     </script>
   </body>
 </html>
