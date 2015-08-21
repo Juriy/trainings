@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Sample</title>
+	<meta name="description" content="Skeleton">
+	<link rel="stylesheet" href="vnd/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="vnd/bootstrap/dist/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<body>
+	<div class="container">
+		<ul class="chat">
+			<li>Chat log</li>
+		</ul>
+		<form role="form" action="#">
+			<input id="say" type="text" class="form-control" placeholder="Say" autocomplete="off" />
+      	</form>
+    </div>
+
+    <script src="vnd/jquery/dist/jquery.min.js"></script>
+    <script src="vnd/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+
+        socket.on('message', receive);
+
+        $('form').submit(function(e) {
+            var value = $('#say').val();
+            $('#say').val('');
+            send(value);
+            e.preventDefault();
+        })
+
+        function send(message) {
+            socket.emit('message', message);
+        }
+
+        function receive(message) {
+            $('.chat').append('<li>' + message + '</li>');
+            $('.chat').scrollTop($('.chat').prop('scrollHeight'));
+        }
+    </script>
+
+</body>
+</html>
