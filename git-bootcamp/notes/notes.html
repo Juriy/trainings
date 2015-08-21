@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Git Bootcamp</title>
+    <meta name="description" content="Git Bootcamp">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+	<link rel="stylesheet" href="vnd/skeleton/css/normalize.css">
+	<link rel="stylesheet" href="vnd/skeleton/css/skeleton.css">
+
+	<link rel="icon" type="image/png" href="images/favicon.png">
+
+	<style>
+		.note {
+			border: 1px dotted gray;
+			margin-top: 3pt;
+			padding: 5pt;
+		}
+
+		.note p {
+			margin-bottom: 1rem;
+		}
+
+		.container {
+			width: 60%;
+		}
+	</style>
+</head>
+<body>
+
+<div class="container">
+    <section class="note">
+      <h3 class="title">Version Control</h3>
+      <div>
+      	<ul>
+      		<li>Why do you need version control</li>
+      		<li>Types of version control systems:
+      			<ul>
+      				<li>Local</li>
+      				<li>Centralized</li>
+      				<li>Distributed</li>
+      			</ul>
+      		</li>
+      		<li>Alternatives to Git: Bazar and Mercurial</li>
+      	</ul>
+      </div>
+    </section>
+
+    <section class="note">
+      <h3 class="title">Installing Git</h3>
+      <div>
+      	<ul>
+      		<li>Distributions</li>
+      	</ul>
+
+<p><strong>MsysGit</strong> is a development environment that is used to <strong>compile</strong> git on Windows. 
+</p>
+<p><strong>msys</strong> - collection of command line utilities to complement <strong>MinGW</strong></p>
+<p><strong>MinGW</strong> - collection of development tools under Windows (GCC compiler)</p>
+<p>
+If you install MsysGit, you can not only get the git as binary but also 
+build it from sources. The <strong>Git for Windows</strong> in contrast 
+is only an executable with no extra tools.
+
+The names now will change to <strong>"Git for Windows"</strong> and 
+<strong>"Git for Windows SDK"</strong>.
+</p>
+      	<ul>
+      		<li>Adding POSIX tools to win</li>
+      		<li>Integrating with PATH</li>
+      		<li>Multi-Platform projects</li>
+      	</ul>
+      </div>
+    </section>
+
+    <section class="note">
+      <h3 class="title">Remotes and Branches</h3>
+      <div>
+        <p>
+        	Explain what is a remote and a branch and why they 
+        	are required from the very first step
+      	</p>
+      </div>
+    </section>
+
+    <section class="note">
+      <h3 class="title">Creating Bare Repository</h3>
+      <div>
+      	<pre><code>$ git init --bare camp2.git</code></pre>
+      	<p> At this point it is enough to know that the bare repository is a
+      	repository for sharing code, and working repository... is a repository
+      	for working. Here is a great explanation why there's a distinction between
+      	the two: <a href="http://www.gitguys.com/topics/shared-repositories-should-be-bare-repositories/">Shared Repositories should be bare</a> </p>
+      </div>
+    </section>
+
+    <section class="note">
+      <h3 class="title">Cloning and Initial Configuration</h3>
+      <div>
+      	<pre><code>$ mkdir fry
+$ cd fry
+$ git clone /Users/juriy/dev/git-repos/camp2.git/ .
+$ git config user.name "Phillip J. Fry"
+$ git config user.email "fry@futurama.com"</code></pre>
+
+		<p>
+			Show that the configuration is in plain file
+		</p>
+		<pre><code>$ cat .git/config</code></pre>
+      </div>
+    </section>
+
+    <section class="note">
+      <h3 class="title">First commit</h3>
+      <div>
+      	<pre><code>$ echo "Horoscope App" > README.md
+$ git status
+$ git add README.md
+$ git commit -m "Initial Commit"
+
+# show the updated status
+$ git status
+
+# show that the commit has been added 
+$ git log
+$ git push -u origin master
+</code></pre>
+
+		<p>
+			Now other team members will receive the file once they clone the 
+			repository
+		</p>
+		<p>
+			 -u will make every successfully pushed branch automatically tracked (otherwise, git pull will not know where to pull from and display an error info). To set tracking information later use:
+
+			<pre><code>git branch --set-upstream-to=origin/master master</code></pre>
+		</p>
+      </div>
+    </section>
+
+    <section class="note">
+      <h3 class="title">Adding second team member</h3>
+      <div>
+      	<p>
+      		Bender joins the team
+      	</p>
+      	<pre><code>$ git clone /Users/juriy/dev/git-repos/camp2.git/ bender
+$ cd bender
+
+# show that the file is in place
+$ ls
+
+# basic configuration
+$ git config user.name "Bender"
+$ git config user.email bender@futurama.com
+
+$ git status
+$ touch LICENSE
+$ echo "All mine" > LICENSE
+$ git add LICENSE
+$ git commit -m "Added license"
+
+# notice that there's no need to add extra parameters to push
+$ git push</code></pre>
+
+		<p>
+			Now Fry can get back the files that Bender edited
+		</p>
+      </div>
+    </section>
+
+    <section class="note">
+      <h3 class="title">Editing tracked files, command semantics</h3>
+      <div>
+      	<p>
+      		Fry starts to build up a functionality. He creates a main.js
+      		file with the following contents:
+      	</p>
+      	<pre><code>console.log('Awesome Horoscope!');
+if (Math.random() > 0.5) {
+    console.log('Your day will be awesome');
+} else {
+    console.log('Bad day... sorry');
+}</code></pre>
+
+      	<pre><code>$ cd fry
+# Add the content to the file
+$ vim main.js
+$ git add main.js
+$ git commit -m "First version of horoscope done"</code></pre>
+
+		<p> After committing the first version, Fry continues
+			to work with the file, he wraps his horoscope code 
+			into a nice function </p>
+
+		<pre><code>console.log('Awesome Horoscope!');
+
+<strong>function printHoroscope()</strong> {
+    if (Math.random() > 0.5) {
+        console.log('Your day will be awesome');
+    } else {
+        console.log('Bad day... sorry');
+    }
+<strong>}</strong>
+</code></pre>
+
+		<p>
+			Now Fry is ready to add it to commit. And he executes git add.
+			At the last minute he decides to check if code works. Turns out
+			it does not. Fry has created a function but he never called it! 
+			This is an obvious mistake. Fries fixes it.
+		</p>
+		<p>
+			If we do <code>git status</code> now, we'll see that main.js
+			file is listed twice there. <strong>[explanation TODO]</strong>
+
+			To add the latest version of the file to the commit, just call
+			<code>git add</code> again.
+		</p>
+		<p>
+			This block also shows that the single command like 'git add' might
+			do different actions depending on what is the context. It can
+			add new files to the list of tracked files, add the files to 
+			commit and, as we'll soon see, mark files as resolved conflicts.
+		</p>
+      </div>
+    </section>
+
+    <section class="note">
+      <h3 class="title">Ignoring Files</h3>
+      <div>
+        <p>
+      	    In most software projects there will be files that 
+      	    you would want to ignore. Our project is not an 
+      	    exception. 
+      	</p>
+      	<p>
+      		Fry's next task is to make horoscope app brighter and
+      		add colors to the console output.
+      	</p>
+      	<pre><code></code></pre>
+
+		<p>
+			The typical patterns for <code>.gitignore</code>
+		</p>
+      </div>
+    </section>
+
+    <section class="note">
+      <h3 class="title">Git Stages</h3>
+      <div>
+        <p>
+        	Text here
+      	</p>
+      	<pre><code>Some code here</code></pre>
+
+		<p>
+			Summary here
+		</p>
+      </div>
+    </section>
+
+    <section class="note">
+      <h3 class="title">Merging changes</h3>
+      <div>
+        <p>
+      	    So far commits to the repository happened strictly in order,
+      	    let's see what happens if two developers work simultaneously.
+      	    Fry has implemented a simple application to print horoscope
+      	</p>
+      	<pre><code></code></pre>
+
+		<p>
+			
+		</p>
+      </div>
+    </section>
+
+    <h2>Branches</h2>
+
+    <section class="note">
+      <h3 class="title">Creating a branch</h3>
+      <div>
+        <p>
+      	</p>
+      	<pre><code># show that there's one branch now
+
+$ git branch
+$ git checkout -b experiment
+$ git branch 
+
+# modifying the code
+$ vim main.am
+$ git commit -am 'Adding experimental feature'
+
+# switch back to master, show that there's no changes there
+$ git checkout master
+</code></pre>
+
+		<p>
+			Summary here
+		</p>
+      </div>
+    </section>
+
+    <section class="note">
+      <h3 class="title">Git DAG</h3>
+      <div>
+        <p>
+        	Show how Git stores commits internally, what is
+        	indeed a branch.
+      	</p>
+      	<pre><code>Some code here</code></pre>
+
+		<p>
+			Summary here
+		</p>
+      </div>
+    </section>
+
+    <section class="note">
+      <h3 class="title">Sample Section</h3>
+      <div>
+        <p>
+        	Text here
+      	</p>
+      	<pre><code>Some code here</code></pre>
+
+		<p>
+			Summary here
+		</p>
+      </div>
+    </section>
+</div>
+
+<script>
+
+</script>
+
+</body>
+</html>
