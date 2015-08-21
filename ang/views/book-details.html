@@ -1,0 +1,53 @@
+ISBN is {{id}}
+
+<div class="media">
+	<a class="media-left" href="#">
+		<img ng-src="{{book.images.medium}}" alt="cover">
+	</a>
+	<div class="media-body">
+		<h3 class="media-heading">{{book.title}}</h3>
+		<h5>by {{book.author}}</h5>
+		{{book.description | asPlainText}}
+		<div>
+			<span>${{book.price.amount}}</span>
+			<button type="button" class="btn-xs btn-info">To Cart</button>
+		</div>
+
+	</div>
+</div>
+
+<h3 class="feedback-title">Readers' feedback</h3>
+<!-- Readers' comments -->
+<ul class="media-list comments">
+	<li class="media">
+		<a class="media-left" href="#">
+			<img src="../img/noavatar.png" alt="no avatar">
+		</a>
+		<div class="media-body">
+			<h4 class="media-heading">Great Book</h4>
+			This is a test of comments. Comment 1, great book.
+		</div>
+	</li>
+	<li class="media">
+		<a class="media-left" href="#">
+			<img src="../img/noavatar.png" alt="no avatar">
+		</a>
+		<div class="media-body">
+			<h4 class="media-heading">Worth reading for sure</h4>
+			I wish I could read more, but I have to write code.
+		</div>
+	</li>
+</ul>
+<!-- / Readers' comments -->
+
+<form class="form-horizontal comment" role="form">
+	<div class="form-group">
+		<input class="form-control" placeholder="Summary">
+	</div>
+	<div class="form-group">
+		<textarea class="form-control" rows="3"></textarea>
+	</div>
+	<div class="form-group">
+		<button type="submit" class="btn btn-default">Post comment</button>
+	</div>
+</form>

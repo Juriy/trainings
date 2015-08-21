@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>Book Store</title>
+
+		<link rel="stylesheet" href="vnd/bootstrap/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="vnd/bootstrap/dist/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="css/main.css">
+	</head>
+
+	<body ng-app="bookstore">
+
+		<ng-include src="'views/menu.html'"></ng-include>
+
+		<div class="container">
+
+		<ng-include src="'views/header.html'"></ng-include>
+
+			<div class="row">
+
+				<div class="col-sm-8 blog-main" ng-view>
+				</div><!-- /.blog-main -->
+
+				<ng-include src="'views/sidebar.html'"></ng-include>
+			</div><!-- /.row -->
+
+		</div><!-- /.container -->
+
+		<ng-include src="'views/footer.html'"></ng-include>
+
+		<!-- vendor libs -->
+		<script src="vnd/jquery/dist/jquery.min.js"></script>
+		<script src="vnd/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="vnd/angular/angular.js"></script>
+		<script src="vnd/angular-route/angular-route.js"></script>
+		
+
+		<!-- bookstore app -->
+		<script src="data/data-small.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/filters/Filters.js"></script>
+	</body>
+</html>
